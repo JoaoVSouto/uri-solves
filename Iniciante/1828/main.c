@@ -14,11 +14,14 @@ void flushStdin() {
 
 gameState checkIfWin(char sheldon, char raj) {
   gameState sheldonWins = lost;
-  if (sheldon == 'd' && (raj == 's' || raj == 'g')) sheldonWins = win;
-  if (sheldon == 'p' && (raj == 'd' || raj == 'o')) sheldonWins = win;
-  if (sheldon == 's' && (raj == 'g' || raj == 'p')) sheldonWins = win;
-  if (sheldon == 'g' && (raj == 'p' || raj == 'o')) sheldonWins = win;
-  if (sheldon == 'o' && (raj == 's' || raj == 'd')) sheldonWins = win;
+  if ((sheldon == 'd' && (raj == 's' || raj == 'g')) ||
+      (sheldon == 'p' && (raj == 'd' || raj == 'o')) ||
+      (sheldon == 's' && (raj == 'g' || raj == 'p')) ||
+      (sheldon == 'g' && (raj == 'p' || raj == 'o')) ||
+      (sheldon == 'o' && (raj == 's' || raj == 'd'))) {
+    sheldonWins = win;
+  }
+
   if (sheldon == raj) sheldonWins = tie;
   return sheldonWins;
 }
