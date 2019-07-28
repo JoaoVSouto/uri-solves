@@ -4,7 +4,7 @@
 #define BITS 32
 
 void decimalToBinary(int arr[], unsigned long int number) {
-  unsigned long int quotient, remainder, countArr = BITS - 1, i;
+  unsigned long int quotient, remainder, countArr = BITS - 1;
 
   do {
     quotient = number / 2;
@@ -42,7 +42,7 @@ int main() {
     decimalToBinary(binary1, n1);
     decimalToBinary(binary2, n2);
 
-    // makes the sum between the two numbers without a carry bit
+    // makes the sum between the two numbers without a carry bit (XOR)
     for (i = BITS - 1; i >= 0; i--) {
       binaryResultant[i] = ((binary1[i] - binary2[i]) == 0) ? 0 : 1;
     }
