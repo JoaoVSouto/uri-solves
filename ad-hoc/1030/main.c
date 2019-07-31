@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 int josephusLoop(int n, int k, int startingPoint) {
   if (n == 1)
     return 1;
