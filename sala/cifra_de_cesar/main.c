@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define KEY 3
+
 int main(int argc, char const* argv[]) {
   int N, i, diff;
 
@@ -17,9 +19,9 @@ int main(int argc, char const* argv[]) {
   for (i = 0; i < N; i++) {
     if (string[i] >= 'x') {
       diff = 122 - string[i];
-      string[i] = 96 + (3 - diff);
+      string[i] = 96 + (KEY - diff);
     } else {
-      string[i] = string[i] + 3;
+      string[i] = string[i] + KEY;
     }
   }
 
