@@ -6,13 +6,15 @@ int main(int argc, char const* argv[]) {
   printf("Digite a quantidade de letras da palavra: \n");
   scanf("%d", &N);
 
-  char string[N + 1];
+  N += 1;  // acrescenta o \n
 
-  for (i = 0; i < N + 1; i++) {
+  char string[N];
+
+  for (i = 0; i < N; i++) {
     scanf("%c", &string[i]);
   }
 
-  for (i = 0; i < N + 1; i++) {
+  for (i = 0; i < N; i++) {
     if (string[i] >= 'x') {
       diff = 122 - string[i];
       string[i] = 96 + (3 - diff);
