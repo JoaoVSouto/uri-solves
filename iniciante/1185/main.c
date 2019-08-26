@@ -8,7 +8,7 @@ float sumMatrix(float matrix[SIZE][SIZE], short *counter) {
 
   for (i = 0; i < SIZE; i++) {
     for (j = 0; j < SIZE; j++) {
-      if ((11 - i) <= j) continue;
+      if (((SIZE - 1) - i) <= j) continue;
       sum += matrix[i][j];
       *counter += 1;
     }
