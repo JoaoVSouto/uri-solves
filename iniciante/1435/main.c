@@ -20,20 +20,19 @@ int main() {
     }
 
     if (N >= 4) {
-      int counter = (int)floor(N / 2.0) - 1;
+      int internalMatrixes = (int)floor(N / 2.0) - 1;
+      int internalN = 2, aux = 1;
 
-      printf("%d\n", counter);
-
-      while (counter > 0) {
-        int internalN = (int)floor(N / 2.0);
-
-        for (i = 1; i < N - 1; i++) {
-          for (j = 1; j < N - 1; j++) {
+      while (internalMatrixes > 0) {
+        for (i = aux; i < N - aux; i++) {
+          for (j = aux; j < N - aux; j++) {
             matrix[i][j] = internalN;
           }
         }
 
-        counter--;
+        internalN++;
+        aux++;
+        internalMatrixes--;
       }
     }
 
@@ -51,8 +50,12 @@ void printMatrix(int size, int matrix[size][size]) {
   int i, j;
   for (i = 0; i < size; i++) {
     for (j = 0; j < size; j++) {
-      printf("%3d ", matrix[i][j]);
+      if (j == size - 1)
+        printf("%3d", matrix[i][j]);
+      else
+        printf("%3d ", matrix[i][j]);
     }
     printf("\n");
   }
+  printf("\n");
 }
