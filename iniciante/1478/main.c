@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+void fillUpperArea(int size, int matrix[size][size]);
+void fillLowerArea(int size, int matrix[size][size]);
+void fillMainDiagonal(int size, int matrix[size][size]);
 void printMatrix(int size, int matrix[size][size]);
 
 int main() {
@@ -10,34 +13,12 @@ int main() {
 
     if (!N) break;
 
-    int matrix[N][N], i, j;
+    int matrix[N][N];
 
-    for (i = 0; i < N; i++) {
-      for (j = 0; j < N; j++) {
-        matrix[i][j] = 0;
-      }
-    }
+    fillMainDiagonal(N, matrix);
 
-    // fill the main diagonal with 1
-    for (i = 0; i < N; i++) {
-      for (j = 0; j < N; j++) {
-        if (i != j) continue;
-        matrix[i][j] = 1;
-      }
-    }
-
-    int counter = 1;
-
-    while (counter <= N - 1) {
-      for (i = 0; i < N - counter; i++) {
-        for (j = counter; j < N; j++) {
-          if (i + 1 != j) continue;
-          matrix[i][j] = counter + 1;
-        }
-      }
-
-      counter++;
-    }
+    fillUpperArea(N, matrix);
+    fillLowerArea(N, matrix);
 
     printMatrix(N, matrix);
   }
@@ -45,12 +26,59 @@ int main() {
   return 0;
 }
 
+void fillUpperArea(int size, int matrix[size][size]) {
+  int counter = 1;
+
+  while (counter <= size - 1) {
+    int x = 0, y = counter;
+
+    while (y <= size - 1) {
+      matrix[x][y] = counter + 1;
+      x += 1;
+      y += 1;
+    }
+
+    counter++;
+  }
+}
+
+void fillLowerArea(int size, int matrix[size][size]) {
+  int counter = 1;
+
+  while (counter <= size - 1) {
+    int x = counter, y = 0;
+
+    while (x <= size - 1) {
+      matrix[x][y] = counter + 1;
+      x += 1;
+      y += 1;
+    }
+
+    counter++;
+  }
+}
+
+void fillMainDiagonal(int size, int matrix[size][size]) {
+  int i, j;
+
+  for (i = 0; i < size; i++) {
+    for (j = 0; j < size; j++) {
+      if (i != j) continue;
+      matrix[i][j] = 1;
+    }
+  }
+}
+
 void printMatrix(int size, int matrix[size][size]) {
   int i, j;
   for (i = 0; i < size; i++) {
     for (j = 0; j < size; j++) {
-      printf("%3d ", matrix[i][j]);
+      if (j == size - 1)
+        printf("%3d", matrix[i][j]);
+      else
+        printf("%3d ", matrix[i][j]);
     }
     printf("\n");
   }
+  printf("\n");
 }
