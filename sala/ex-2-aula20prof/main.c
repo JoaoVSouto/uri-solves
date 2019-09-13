@@ -48,6 +48,8 @@ int main() {
   }
   printf("\n");
 
+  v3 = v3 - i;
+
   free(v1);
   free(v2);
   free(v3);
