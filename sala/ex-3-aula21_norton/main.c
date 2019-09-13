@@ -52,10 +52,10 @@ int main() {
     }
 
     for (i = 0; i < qtd_alunos; i++) {
+        printf("Digite as notas do Aluno %d\n", i + 1);
         for (j = 0; j < qtd_notas; j++) {
             scanf("%f", &matriz[i][j]);
         }
-        printf("J antes:%d\n", j);
         matriz[i][j] = media(matriz, i, qtd_notas);
     }
 
