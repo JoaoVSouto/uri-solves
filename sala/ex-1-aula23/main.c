@@ -9,6 +9,8 @@ int count(int number, int desired, int desiredFixed) {
     }
 
     count(number / 10, desired, desiredFixed);
+  } else {
+    return desired;
   }
 }
 
@@ -17,9 +19,7 @@ int main() {
 
   scanf("%d %d", &N, &K);
 
-  printf("count: %d\n", count(N, K, K));
-
-  printf("%d\n", count(N, K, K) - K);
+  printf("The number %d appears %d times\n", K, count(N, K, K) - K);
 
   return 0;
 }
