@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int countDigit(int N, int K) {
-  if (N == 0) {
+  if (!N) {
     return 0;
   }
 
