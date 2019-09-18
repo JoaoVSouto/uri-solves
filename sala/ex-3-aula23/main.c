@@ -1,10 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void reverseArray(int arraySize, int arrayCount, int array[]) {
-  int stopCondition = arraySize - arraySize / 2;
+void printArray(int arraySize, int array[]) {
+  int i;
 
-  if (arrayCount <= stopCondition) {
+  for (i = 0; i < arraySize; i++) {
+    printf("%d ", array[i]);
+  }
+  printf("\n");
+}
+
+void reverseArray(int arraySize, int arrayCount, int array[]) {
+  if (arrayCount <= arraySize / 2) {
     return;
   }
 
@@ -28,16 +35,15 @@ int main() {
 
   array = (int*)calloc(arraySize, sizeof(int));
 
+  printf("Type the elements of the array: ");
   for (i = 0; i < arraySize; i++) {
     scanf("%d", &array[i]);
   }
 
   reverseArray(arraySize, arrayCount, array);
 
-  for (i = 0; i < arraySize; i++) {
-    printf("%d ", array[i]);
-  }
-  printf("\n");
+  printf("Array reversed: ");
+  printArray(array, arraySize);
 
   free(array);
 
