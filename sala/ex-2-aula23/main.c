@@ -24,5 +24,7 @@ int main() {
 
   printf("The sum of the array is %.2f\n", sumArray(arraySize, array));
 
+  free(array);
+
   return 0;
 }
