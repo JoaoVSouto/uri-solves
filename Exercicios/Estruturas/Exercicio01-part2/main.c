@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX_PESSOAS 11
+#define MAX_PESSOAS 10
 int op;
 
 typedef struct data_nascimento {
@@ -24,14 +24,17 @@ void antes_data();
 
 int main() {
     do {
-        system("cls");
-        printf("-----MENU----\n");
-        printf("Digite 1 para inserir uma pessoa\n");
-        printf("Digite 2 para listar todas as pessoas (nome e altura)\n");
-        printf("Digite 3  para listar os nomes das pessoas que nasceram antes de uma certa data fornecida.\n");
-        printf("Digite 4 para sair\n");
+        system("cls");  // windows
+        //system("clear"); //linux
+        printf("-----MENU-----\n");
+        printf("Digite 1 para inserir uma pessoa.\n");
+        printf("Digite 2 para listar todas as pessoas (nome e altura).\n");
+        printf("Digite 3 para listar os nomes das pessoas que nasceram antes de uma certa data fornecida.\n");
+        printf("Digite 4 para sair.\n");
+        printf("--------------\n");
         scanf("%d", &op);
-        system("cls");
+        system("cls");  // windows
+        //system("clear"); //linux
         switch (op) {
             case 1:
                 inserir_nome();
@@ -59,24 +62,33 @@ int main() {
 void inserir_nome() {
     static int i = 0;
     do {
-        printf("Digite o nome\n");
-        scanf("%s", &pessoas[i].nome);
+        if (i >= MAX_PESSOAS) {
+            printf("Limite de pessoas alcancado. :/\n");
+            printf("Aperte enter para voltar ao menu !\n");
+            getchar();
+            getchar();
+            op = 0;
+        } else {
+            printf("Digite o nome\n");
+            scanf("%s", &pessoas[i].nome);
 
-        printf("Digite a altura\n");
-        scanf("%f", &pessoas[i].altura);
+            printf("Digite a altura\n");
+            scanf("%f", &pessoas[i].altura);
 
-        printf("Digite o  dia de nascimento\n");
-        scanf("%d", &pessoas[i].data.dia);
+            printf("Digite o  dia de nascimento\n");
+            scanf("%d", &pessoas[i].data.dia);
 
-        printf("Digite o  mes de nascimento\n");
-        scanf("%d", &pessoas[i].data.mes);
+            printf("Digite o  mes de nascimento\n");
+            scanf("%d", &pessoas[i].data.mes);
 
-        printf("Digite o  ano de nascimento\n");
-        scanf("%d", &pessoas[i].data.ano);
+            printf("Digite o  ano de nascimento\n");
+            scanf("%d", &pessoas[i].data.ano);
 
-        printf("Digite 1 caso queira adicionar mais nomes ou 0 para sair\n");
-        scanf("%d", &op);
-        i++;
+            printf("Digite 1, caso queira adicionar mais nomes, ou 0 para sair.\n");
+            scanf("%d", &op);
+            i++;
+        }
+
     } while (op != 0);
 }
 
@@ -88,6 +100,7 @@ void lista_nome_altura() {
             printf("Altura: %.1f\n", pessoas[i].altura);
         }
     }
+    printf("Aperte enter para voltar ao menu!\n");
     getchar();
     getchar();
 }
@@ -95,12 +108,11 @@ void lista_nome_altura() {
 void antes_data() {
     int i, escolhaDia, escolhaMes, escolhaAno, verifica = 0;
     do {
-        printf("%d\n", pessoas[0].data);
-        printf("Digite um dia\n");
+        printf("Digite um dia.\n");
         scanf("%d", &escolhaDia);
-        printf("Digite um mes\n");
+        printf("Digite um mes.\n");
         scanf("%d", &escolhaMes);
-        printf("Digite um ano\n");
+        printf("Digite um ano.\n");
         scanf("%d", &escolhaAno);
 
         for (i = 0; i < MAX_PESSOAS; i++) {
@@ -125,11 +137,11 @@ void antes_data() {
             }
         }
         if (verifica != 1) {
-            printf("Nada foi encontrado :(\n");
+            printf("Nada foi encontrado. :(\n");
         }
         verifica = 0;
 
-        printf("Digite 1 caso queira pesquisar mais pessoas ou 0 para sair\n");
+        printf("Digite 1, caso queira pesquisar mais pessoas, ou 0 para voltar ao menu\n");
         scanf("%d", &op);
     } while (op != 0);
 }
