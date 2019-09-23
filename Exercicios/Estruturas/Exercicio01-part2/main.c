@@ -17,7 +17,7 @@ typedef struct pessoa {
 } Pessoa;
 
 Pessoa pessoas[MAX_PESSOAS];
-
+void display_antes_data();
 void lista_nome_altura();
 void inserir_nome();
 void antes_data();
@@ -105,6 +105,12 @@ void lista_nome_altura() {
     getchar();
 }
 
+void display_antes_data(int* i, int* verifica) {
+    printf("Nome: %s\n", pessoas[*i].nome);
+    printf("Altura: %.1f\n", pessoas[*i].altura);
+    *verifica = 1;
+}
+
 void antes_data() {
     int i, escolhaDia, escolhaMes, escolhaAno, verifica = 0;
     do {
@@ -118,19 +124,13 @@ void antes_data() {
         for (i = 0; i < MAX_PESSOAS; i++) {
             if (pessoas[i].altura != 0) {
                 if (pessoas[i].data.ano < escolhaAno) {
-                    printf("Nome: %s\n", pessoas[i].nome);
-                    printf("Altura: %.1f\n", pessoas[i].altura);
-                    verifica = 1;
+                    display_antes_data(&i, &verifica);
                 } else if (pessoas[i].data.ano == escolhaAno) {
                     if (pessoas[i].data.mes < escolhaMes) {
-                        printf("Nome: %s\n", pessoas[i].nome);
-                        printf("Altura: %.1f\n", pessoas[i].altura);
-                        verifica = 1;
+                        display_antes_data(&i, &verifica);
                     } else if (pessoas[i].data.mes == escolhaMes) {
                         if (pessoas[i].data.dia < escolhaDia) {
-                            printf("Nome: %s\n", pessoas[i].nome);
-                            printf("Altura: %.1f\n", pessoas[i].altura);
-                            verifica = 1;
+                            display_antes_data(&i, &verifica);
                         }
                     }
                 }
